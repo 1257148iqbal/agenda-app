@@ -29,6 +29,8 @@ const AddEvents = () => {
 //#region State
   const [dbError, setError] = useState(false);
   const [firstRender, setFirstRender] = useState(true);
+  const [fromDate, setFromDate] = useState(new Date());
+
 //#endregion State
 
   useEffect(() => {
@@ -48,6 +50,10 @@ const AddEvents = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  const onChange = (date)=>{
+    setFromDate(date)
+  }
 
   const onSubmit = (values) => {
     setFirstRender(false);
@@ -95,6 +101,7 @@ const AddEvents = () => {
             <DatePicker
               placeholderText="Select date"
               onChange={(date) => field.onChange(date)}
+              onSelect={date=>onChange(date)}
               selected={field.value}
               value={field.value}
               minDate={new Date()}
@@ -137,6 +144,7 @@ const AddEvents = () => {
               placeholderText="Select end date"
               onChange={(date) => field.onChange(date)}
               selected={field.value}
+              minDate={fromDate}
               value={field.value}
               timeFormat="HH:mm"
               dateFormat="MMMM d, yyyy h:mm aa"

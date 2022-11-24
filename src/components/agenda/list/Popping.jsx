@@ -33,6 +33,7 @@ const Popping = ({ open, handleClose, event }) => {
   //#region State
   const [dbError, setError] = useState(false);
   const [firstRender, setFirstRender] = useState(true);
+  const [fromDate, setFromDate] = useState(new Date());
 
 
   //#endregion State
@@ -67,6 +68,11 @@ const Popping = ({ open, handleClose, event }) => {
         : "No description was provided",
     },
   });
+
+  
+  const onChange = (date)=>{
+    setFromDate(date)
+  }
 
   const onSubmit = (values) => {
     setFirstRender(false);
@@ -124,6 +130,8 @@ const Popping = ({ open, handleClose, event }) => {
                     placeholderText="Select date"
                     onChange={(date) => field.onChange(date)}
                     selected={field.value}
+                    minDate={new Date()}
+                    onSelect={date=>onChange(date)}
                     showTimeSelect
                     timeFormat="HH:mm"
                     dateFormat="MMMM d, yyyy h:mm aa"
@@ -172,6 +180,7 @@ const Popping = ({ open, handleClose, event }) => {
                     placeholderText="Select end date"
                     onChange={(date) => field.onChange(date)}
                     selected={field.value}
+                    minDate={fromDate}
                     timeFormat="HH:mm"
                     dateFormat="MMMM d, yyyy h:mm aa"
                     showTimeSelect
