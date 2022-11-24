@@ -33,6 +33,8 @@ const Popping = ({ open, handleClose, event }) => {
   //#region State
   const [dbError, setError] = useState(false);
   const [firstRender, setFirstRender] = useState(true);
+
+
   //#endregion State
 
   useEffect(() => {

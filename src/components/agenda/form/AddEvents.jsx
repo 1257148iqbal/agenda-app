@@ -97,6 +97,7 @@ const AddEvents = () => {
               onChange={(date) => field.onChange(date)}
               selected={field.value}
               value={field.value}
+              minDate={new Date()}
               showTimeSelect
               timeFormat="HH:mm"
               dateFormat="MMMM d, yyyy h:mm aa"
